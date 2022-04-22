@@ -1,5 +1,6 @@
 package pt.xarepe.streaming_stock_quote_service.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pt.xarepe.streaming_stock_quote_service.model.Quote;
 import reactor.core.publisher.Flux;
@@ -8,7 +9,6 @@ import reactor.util.function.Tuple2;
 
 import javax.annotation.PostConstruct;
 import java.math.BigDecimal;
-import java.math.MathContext;
 import java.math.RoundingMode;
 import java.time.Duration;
 import java.time.Instant;
@@ -18,8 +18,8 @@ import java.util.Random;
 import java.util.function.BiFunction;
 
 @Service
+@RequiredArgsConstructor
 public class QuoteServiceImpl implements QuoteService {
-    private final MathContext mathContext = new MathContext(2);
     private final List<Quote> quotes = new ArrayList<>();
     private final Random random = new Random();
 

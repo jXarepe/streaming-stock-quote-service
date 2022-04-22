@@ -13,12 +13,14 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 public class QuoteRouter {
 
     public static final String QUOTES_PATH = "/quotes";
+    public static final String QUOTES_HISTORY_PATH = "/quotes/history";
 
     @Bean
     public RouterFunction<ServerResponse> quoteRoutes(QuoteHandler handler){
         return route()
                 .GET(QUOTES_PATH, accept(MediaType.APPLICATION_JSON), handler::fetchQuotes)
                 .GET(QUOTES_PATH, accept(MediaType.APPLICATION_NDJSON), handler::streamQuotes)
+                .GET(QUOTES_HISTORY_PATH, accept(MediaType.APPLICATION_JSON), handler::fetchQuotesHistory)
                 .build();
     }
 }
